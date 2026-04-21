@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Project runtime data
+tmp/
+database/*.db
+config/credentials.json
+config/token.json
+config/google_service.json

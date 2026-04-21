@@ -1,0 +1,26 @@
+[Unit]
+Description=FFW Telegram Video Bot (polling)
+After=network.target
+
+[Service]
+Type=simple
+User=ffwbot
+WorkingDirectory=/opt/ffw-bot
+EnvironmentFile=/opt/ffw-bot/config/.env
+
+# Polling mode (no webhook needed).
+ExecStart=/opt/ffw-bot/.venv/bin/python /opt/ffw-bot/main.py
+
+Restart=always
+RestartSec=5
+
+# systemd will send SIGTERM on stop; aiogram should handle cancellation cleanly.
+TimeoutStopSec=60
+KillSignal=SIGTERM
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
